@@ -1,0 +1,22 @@
+<h1><%= @room.name %>を予約する</h1>
+
+<%= form_with model: [@room, @reservation] do |f| %>
+  <div>
+    <%= f.label :check_in, "チェックイン日" %>
+    <%= f.date_field :check_in %>
+  </div>
+
+  <div>
+    <%= f.label :check_out, "チェックアウト日" %>
+    <%= f.date_field :check_out %>
+  </div>
+
+  <div>
+    <%= f.label :number_of_people, "人数" %>
+    <%= f.number_field :number_of_people %>
+  </div>
+
+  <%= f.submit "予約する" %>
+<% end %>
+
+<%= link_to "戻る", :back %>

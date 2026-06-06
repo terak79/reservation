@@ -1,0 +1,24 @@
+<h1>施設一覧</h1>
+
+<%= form_with url: rooms_path, method: :get do |f| %>
+  <div>
+    <%= f.select :area, ["東京", "大阪", "京都", "札幌"], include_blank: "エリアを選択" %>
+    <%= f.text_field :keyword, placeholder: "フリーワード検索" %>
+    <%= f.submit "検索" %>
+  </div>
+<% end %>
+
+<%= link_to "施設を登録する", new_room_path %>
+
+<% @rooms.each do |room| %>
+  <div>
+    <% if room.image.present? %>
+      <%= image_tag room.image.url %>
+    <% end %>
+    <p><%= link_to room.name, room_path(room) %></p>
+    <p><%= room.address %></p>
+    <p><%= room.description %></p>
+    <p>¥<%= room.price %>/泊</p>
+    <p><%= room.created_at.strftime("%Y/%m/%d") %></p>
+  </div>
+<% end %>
