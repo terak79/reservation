@@ -6,12 +6,15 @@
       <%= image_tag reservation.room.image.url %>
     <% end %>
     <p><%= reservation.room.name %></p>
+    <p><%= reservation.room.description %></p>
     <p>チェックイン: <%= reservation.check_in.strftime("%Y/%m/%d") %></p>
     <p>チェックアウト: <%= reservation.check_out.strftime("%Y/%m/%d") %></p>
     <% nights = (reservation.check_out - reservation.check_in).to_i %>
     <p>宿泊日数: <%= nights %>泊</p>
     <p>人数: <%= reservation.number_of_people %>人</p>
-    <p>合計料金: ¥<%= reservation.room.price * nights * reservation.number_of_people %></p>
+    <p>合計料金: ¥<%= number_with_delimiter(reservation.room.price * nights * reservation.number_of_people) %></p>
     <p>予約確定日時: <%= reservation.created_at.strftime("%Y/%m/%d %H:%M") %></p>
+    <%= link_to "編集", edit_reservation_path(reservation) %>
+    <%= link_to "削除", reservation_path(reservation), data: { turbo_method: :delete, turbo_confirm: "予約を削除しますか？" } %>
   </div>
 <% end %>

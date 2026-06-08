@@ -1,6 +1,6 @@
-<h1><%= @room.name %>を予約する</h1>
+<h1><%= @room.name %>の予約を編集する</h1>
 
-<%= form_with model: [@room, @reservation] do |f| %>
+<%= form_with model: @reservation, url: reservation_path(@reservation) do |f| %>
   <div>
     <%= f.label :check_in, "チェックイン日" %>
     <%= f.date_field :check_in %>
@@ -13,10 +13,10 @@
 
   <div>
     <%= f.label :number_of_people, "人数" %>
-    <%= f.number_field :number_of_people, min: 1%>
+    <%= f.number_field :number_of_people, min: 1 %>
   </div>
 
-  <%= f.submit "予約する" %>
+  <%= f.submit "更新する" %>
 <% end %>
 
 <%= link_to "戻る", :back %>

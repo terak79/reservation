@@ -1,6 +1,13 @@
 <h1>アカウント情報</h1>
 
+<% if @user.icon.present? %>
+  <%= image_tag @user.icon.url, style: "width: 100px; height: 100px; border-radius: 50%;" %>
+<% end %>
+
+<p>名前: <%= @user.name %></p>
 <p>メールアドレス: <%= @user.email %></p>
 <p>パスワード: **********</p>
+<p>自己紹介: <%= @user.bio %></p>
 
 <%= link_to "プロフィール編集", edit_users_profile_path %>
+<%= link_to "アカウント情報編集", edit_user_registration_path %>

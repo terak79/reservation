@@ -1,6 +1,6 @@
 class RoomsController < ApplicationController
-  before_action :authenticate_user!, only: [ :new, :create ]
-  before_action :set_room, only: [ :show ]
+  before_action :authenticate_user!, only: [ :new, :create, :edit, :update, :destroy ]
+  before_action :set_room, only: [ :show, :edit, :update, :destroy ]
 
   def index
     @rooms = Room.all
@@ -8,8 +8,9 @@ class RoomsController < ApplicationController
       @rooms = @rooms.where("name LIKE ? OR description LIKE ?", "%#{params[:keyword]}%", "%#{params[:keyword]}%")
     end
     if params[:area].present?
-      @rooms = @rooms.where("address LIKE ?", "%#{params[:keyword]}%")
+      @rooms = @rooms.where("address LIKE ?", "%#{params[:area]}%")
     end
+    @rooms_count = @rooms.count
   end
 
   def show
@@ -26,6 +27,26 @@ class RoomsController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def my_rooms
+    @rooms = current_user.rooms
+  end
+
+  def edit
+  end
+
+  def update
+    if @room.update(room_params)
+      redirect_to @room, notice: "施設を更新しました"
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @room.destroy
+    redirect_to rooms_path, notice: "施設を削除しました"
   end
 
   private

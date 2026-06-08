@@ -1,9 +1,21 @@
 <h1><%= @room.name %></h1>
 
+<% if @room.image.present? %>
+  <%= image_tag @room.image.url %>
+  <% else %>
+  <%= image_tag "defo.png" %>
+<% end %>
+
 <p><%= @room.description %></p>
-<p>¥<%= @room.price %>/泊</p>
+<p>¥<%= number_with_delimiter(@room.price) %>/泊</p>
 <p><%= @room.address %></p>
 <p>作成日: <%= @room.created_at.strftime("%Y/%m/%d") %></p>
 
 <%= link_to "予約する", new_room_reservation_path(@room) %>
+
+<% if user_signed_in? && current_user == @room.user %>
+  <%= link_to "編集", edit_room_path(@room) %>
+  <%= link_to "削除", room_path(@room), data: { turbo_method: :delete, turbo_confirm: "施設を削除しますか？" } %>
+<% end %>
+
 <%= link_to "戻る", :back %>
