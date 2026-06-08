@@ -1,3 +1,9 @@
+<div class="hero-section">
+  <div class="hero-overlay">
+    <h1 class="hero-title">Pickup Travel で<br>旅を身近に</h1>
+  </div>  
+</div>
+
 <div class="container mt-4">
   <%= form_with url: rooms_path, method: :get do |f| %>
     <div class="d-flex gap-2 mb-3">
@@ -8,7 +14,10 @@
   <% end %>
 
   <p><%= @rooms_count %>件が見つかりました。</p>
-  <%= link_to "施設を登録する", new_room_path, class: "btn btn-primary mb-3" %>
+  <% if user_signed_in? %>
+    <%= link_to "施設を登録する", new_room_path, class: "btn btn-primary mb-3" %>
+  <% end %>
+
 
   <div class="row row-cols-1 row-cols-md-3 g-4">
     <% @rooms.each do |room| %>
