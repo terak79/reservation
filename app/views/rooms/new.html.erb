@@ -1,32 +1,44 @@
-<h1>施設を登録する</h1>
+<div class="container mt-4">
+  <%= link_to "← 戻る", :back, class: "text-decoration-none mb-3 d-inline-block" %>
 
-<%= form_with model: @room do |f| %>
-  <div>
-    <%= f.label :name, "施設名" %>
-    <%= f.text_field :name %>
+  <div class="row justify-content-center mt-3">
+    <div class="col-md-6">
+      <div class="card p-4">
+        <h2 class="mb-4">施設を登録する</h2>
+
+        <%= form_with model: @room do |f| %>
+          <div class="mb-3">
+            <%= f.label :name, "施設名", class: "form-label" %>
+            <%= f.text_field :name, class: "form-control #{'is-invalid' if @room.errors[:name].any?}" %>
+            <div class="invalid-feedback"><%= @room.errors[:name].first %></div>
+          </div>
+
+          <div class="mb-3">
+            <%= f.label :description, "施設詳細", class: "form-label" %>
+            <%= f.text_area :description, class: "form-control #{'is-invalid' if @room.errors[:description].any?}", rows: 4 %>
+            <div class="invalid-feedback"><%= @room.errors[:description].first %></div>
+          </div>
+
+          <div class="mb-3">
+            <%= f.label :price, "料金（/日）", class: "form-label" %>
+            <%= f.number_field :price, class: "form-control #{'is-invalid' if @room.errors[:price].any?}" %>
+            <div class="invalid-feedback"><%= @room.errors[:price].first %></div>
+          </div>
+
+          <div class="mb-3">
+            <%= f.label :address, "住所", class: "form-label" %>
+            <%= f.text_field :address, class: "form-control #{'is-invalid' if @room.errors[:address].any?}" %>
+            <div class="invalid-feedback"><%= @room.errors[:address].first %></div>
+          </div>
+
+          <div class="mb-3">
+            <%= f.label :image, "施設画像", class: "form-label" %>
+            <%= f.file_field :image, class: "form-control" %>
+          </div>
+
+          <%= f.submit "登録する", class: "btn btn-primary w-100" %>
+        <% end %>
+      </div>
+    </div>
   </div>
-
-  <div>
-    <%= f.label :description, "施設詳細" %>
-    <%= f.text_area :description %>
-  </div>
-
-  <div>
-    <%= f.label :price, "料金（/日）" %>
-    <%= f.number_field :price %>
-  </div>
-
-  <div>
-    <%= f.label :address, "住所" %>
-    <%= f.text_field :address %>
-  </div>
-  
-  <div>
-    <%= f.label :image, "施設画像"%>
-    <%= f.file_field :image %>
-  </div>
-
-  <%= f.submit "登録する" %>
-<% end %>
-
-<%= link_to "戻る", :back %>
+</div>
