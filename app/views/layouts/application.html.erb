@@ -36,7 +36,7 @@
                   <li><%= link_to "自分の施設一覧", my_rooms_rooms_path, class: "dropdown-item" %></li>
                   <li><%= link_to "予約一覧", reservations_path, class: "dropdown-item" %></li>
                   <li><hr class="dropdown-divider"></li>
-                  <li><%= button_to "ログアウト", destroy_user_session_path, method: :delete, class: "dropdown-item btn btn-link" %></li>
+                  <li><%= link_to "ログアウト", destroy_user_session_path, class: "dropdown-item" %></li>
                 </ul>
               </div>
             <% else %>

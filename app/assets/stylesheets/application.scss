@@ -1,6 +1,24 @@
 @import "bootstrap";
 
-img {
-    max-width: 300px;
-    height: auto;
+// ナビバー
+.navbar {
+  background-color: #1a2744 !important;
+}
+
+.navbar-brand {
+  color: white !important;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+// ボタン
+.btn-primary {
+  background-color: #e8603c !important;
+  border-color: #e8603c !important;
+  color: white !important;
+}
+
+.btn-primary:hover {
+  background-color: #d4522e !important;
+  border-color: #d4522e !important;
 }
