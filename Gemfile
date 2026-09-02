@@ -27,7 +27,7 @@ gem "jbuilder"
 gem "devise"
 gem "bootstrap", "~> 5.3"
 gem "sassc-rails"
-gem "carrierwave", "~> 3.0"
+gem "carrierwave", "~> 3.1"
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ windows jruby ]
 
